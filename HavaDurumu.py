@@ -8,16 +8,14 @@ def hava_durumu_getir(sehir):
     # İstek URL'sini oluştur
     tam_url = base_url + "appid=" + api_anahtari + "&q=" + sehir + ",TR&lang=tr&units=metric"
 
-    print(f"İstek gönderilen URL: {tam_url}")  # Hata ayıklama için URL'yi yazdır
 
     # API'ye istek gönder
     response = requests.get(tam_url)
 
     # Yanıtı kontrol et
     if response.status_code == 200:
-        print("API'den başarıyla veri alındı.")  # Hata ayıklama için
         veri = response.json()
-        print(f"API Yanıtı: {veri}")  # Gelen cevabı direkt yazdır, sorunu anlamaya yardımcı olabilir
+
 
         ana_bilgiler = veri['main']
         sicaklik = ana_bilgiler['temp']
@@ -34,7 +32,6 @@ def hava_durumu_getir(sehir):
     else:
         # Hata kodu ve gelen yanıtı yazdır, böylece neden hata olduğunu görebilirsiniz
         print(f"Şehir bulunamadı veya başka bir hata oluştu. Hata kodu: {response.status_code}")
-        print(f"API'den dönen yanıt: {response.text}")
 
 
 # Kullanıcıdan şehir ismi al ve hava durumunu getir
